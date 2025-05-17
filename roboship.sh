@@ -1,10 +1,11 @@
 #!/bin/bash
 
-num=$1
+userid=$(id -u)
+if [ $userid -ne 0]
+then
+    echo "ERR : login with root access"
+    exit 1
+else
+    echo "you are in root access"
 
-if [ $num -lt 10 ]
-then 
-    echo "The number $num is less than 10"
-else 
-    echo "The number $num is greater than 10" 
 fi
