@@ -1,3 +1,3 @@
 #!/bin/bash
-Datedetails=$(date)
-echo "todays date and time are :$Datedetails"
+fruits=("mango","apple","watermelon")
+echo="my faroutite {$fruits[0]}"
