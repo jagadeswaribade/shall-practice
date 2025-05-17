@@ -1,3 +1,3 @@
 #!/bin/bash
 fruits=("mango","apple","watermelon")
-echo="my faroutite {$fruits[0]}"
+echo="my favourite fruit : {$fruits[0]}"
