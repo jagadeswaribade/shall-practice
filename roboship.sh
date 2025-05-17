@@ -2,4 +2,4 @@
 
 fruits=("mango" "apple" "watermelon")
 
-echo "my favourite fruit : ${fruits[3]}"
+echo "my favourite fruit : ${fruits[@]}"
