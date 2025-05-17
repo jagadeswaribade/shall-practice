@@ -10,12 +10,12 @@ else
     echo "you are in root access"
 fi
 
-dnf install mysql -y
+dnf install mysqlxxxxvggfg -y
 
 if [ $? -eq 0 ]
 then
     echo "MySQL installation got Success..!!!"
 else
-    echo "ERR : user not in root access"
+    echo "MySQL installation got Failed"
     exit 1
 fi
