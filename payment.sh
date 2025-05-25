@@ -1,22 +1,10 @@
-[Unit]
-Description=Payment Service
+#!/bin/bash
 
-[Service]
-User=root
-WorkingDirectory=/app
-// highlight-start
-Environment=CART_HOST=cart.jaggu.shop
-Environment=CART_PORT=8080
-Environment=USER_HOST=user.jaggu.shop
-Environment=USER_PORT=8080
-Environment=AMQP_HOST=rabbitmq.jaggu.shop
-// highlight-end
-Environment=AMQP_USER=roboshop
-Environment=AMQP_PASS=roboshop123
+source ./common.sh
+app_name=payment
 
-ExecStart=/usr/local/bin/uwsgi --ini payment.ini
-ExecStop=/bin/kill -9 $MAINPID
-SyslogIdentifier=payment
-
-[Install]
-WantedBy=multi-user.target
+check_root
+app_setup
+python_setup
+systemd_setup
+print_time
