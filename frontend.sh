@@ -1,40 +1,13 @@
 #!/bin/bash
 
-USERID=$(id -u)
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
-N="\e[0m"
-LOGS_FOLDER="/var/log/roboshop-logs"
-SCRIPT_NAME="$(echo $0 | cut -d "." -f1 )"
-LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
-SCRIPT_DIR=$PWD
-
-mkdir -p $LOGS_FOLDER
-
-if [ $USERID -ne 0 ]
-then
-    echo -e "$R ERROR : Run with root access" | tee -a $LOG_FILE
-    exit 1
-else
-    echo -e "$G SUCCESS : you ur running with root access" | tee -a $LOG_FILE
-fi
-
-VALIDATE(){
-    if [ $1 -eq 0 ]
-    then 
-        echo "$2 is $G SUCCESS....install" | tee -a $LOG_FILE
-    else 
-        echo "$2 is $R FAIL.....not installed" | tee -a $LOG_FILE
-        exit 1
-    fi
-}
+source ./common.sh
+check_root
 
 dnf module disable nginx -y &>>$LOG_FILE
-VALIDATE $? "Disabling default nginx"
+VALIDATE $? "Disabling Default Nginx"
 
 dnf module enable nginx:1.24 -y &>>$LOG_FILE
-VALIDATE $? "Enabling nginx:1.24"
+VALIDATE $? "Enabling Nginx:1.24"
 
 dnf install nginx -y &>>$LOG_FILE
 VALIDATE $? "Installing Nginx"
@@ -61,4 +34,6 @@ VALIDATE $? "Copying nginx.conf"
 
 systemctl restart nginx 
 VALIDATE $? "Restarting nginx"
+
+print_time
 
