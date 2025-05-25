@@ -11,7 +11,7 @@ SCRIPT_NAME=$(echo $0 | cat -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 SOURCE_DIR="$PWD"
 
-mkdir -d $LOGS_FOLDER
+mkdir -p $LOGS_FOLDER
 
 echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
